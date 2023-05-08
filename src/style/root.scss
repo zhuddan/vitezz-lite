@@ -1,0 +1,18 @@
+@import './var.scss';
+
+:root {
+  --color-primary: #6356e5;
+  // layout
+  --app-header-hight: 60px;
+  --app-breadcrumbs-hight: 30px;
+  --app-footer-hight: 40px;
+  --app-content-height: calc(100vh - var(--app-header-hight) - var(--app-breadcrumbs-hight) - var(--app-footer-hight));
+  --app-content-padding: 20px;
+  --app-side-bar-width: 200px;
+  // break-point
+  --app-screen-sm: #{$screen-sm};
+  --app-screen-md: #{$screen-md};
+  --app-screen-lg: #{$screen-lg};
+  --app-screen-xl: #{$screen-xl};
+  --app-screen-xxl: #{$screen-xxl};
+}

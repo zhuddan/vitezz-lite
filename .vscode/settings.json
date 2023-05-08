@@ -1,0 +1,16 @@
+{
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    }
+  },
+  "cSpell.words": [
+    "Ikun",
+    "Starport"
+  ],
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#000000",
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

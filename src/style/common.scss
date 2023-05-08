@@ -1,0 +1,64 @@
+.clearfix {
+  &::after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: ' ';
+    clear: both;
+    height: 0;
+  }
+}
+
+@mixin text_overflow_($line) {
+  word-break: break-all;           //在恰当的断字点进行换行
+  overflow: hidden;                 //文字超出的进行隐藏
+  text-overflow: ellipsis;          //超出的文字用省略号表示
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  display: -webkit-box;             //将元素设为盒子伸缩模型显示
+  -webkit-box-orient: vertical;     //伸缩方向设为垂直方向
+  -webkit-line-clamp: $line;            //设定一共3行，超出的部分隐藏，并用省略号来表示
+}
+
+.text-overflow {
+  @include text_overflow_(1);
+}
+
+.text-overflow-2 {
+  @include text_overflow_(2);
+}
+
+.text-overflow-3 {
+  @include text_overflow_(3);
+}
+
+.text-overflow-4 {
+  @include text_overflow_(4);
+}
+
+.text-overflow-5 {
+  @include text_overflow_(5);
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.app-container {
+  margin-top: 20px;
+}
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+button {
+  &:hover {
+    cursor: pointer;
+  }
+}
