@@ -17,7 +17,6 @@
     "@iconify/json": "^2.2.47",
     "@purge-icons/generated": "^0.9.0",
     "@vueuse/core": "^9.13.0",
-    "@zdzz/hooks": "^0.0.25",
     "@zdzz/shared": "^0.0.33",
     "axios": "^1.3.5",
     "lodash-es": "^4.17.21",
