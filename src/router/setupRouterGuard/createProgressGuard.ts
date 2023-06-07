@@ -1,4 +1,5 @@
 import type { Router } from 'vue-router';
+
 import nProgress from 'nprogress';
 
 export function createProgressGuard(router: Router) {

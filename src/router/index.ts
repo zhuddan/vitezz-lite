@@ -1,6 +1,6 @@
 import type { App } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
 
+import { createRouter, createWebHistory } from 'vue-router';
 import { baseRoutes } from './routes/baseRoutes';
 
 const router = createRouter({

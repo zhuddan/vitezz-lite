@@ -378,5 +378,13 @@ module.exports = {
       svg: 'always',
       math: 'always',
     }],
+
+    'import/order': [
+      'error',
+      {
+        groups: [['type'], ['object', 'builtin'], 'index'],
+        'newlines-between': 'always',
+      },
+    ],
   },
 };

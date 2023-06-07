@@ -1,9 +1,8 @@
-import { defineStore } from 'pinia';
+import type { UserState } from '../typings/user';
 
+import { defineStore } from 'pinia';
 import { getInfo, login } from '@/api/login';
 import { removeToken, setToken } from '@/utils/cache';
-
-import type { UserState } from '../typings/user';
 
 export const useUserStore = defineStore({
   id: 'user',

@@ -1,10 +1,9 @@
 <script lang="ts">
-import Iconify from '@purge-icons/generated';
-import { computed, defineComponent, nextTick, onMounted, ref, unref, watch } from 'vue';
 import type { CSSProperties } from 'vue';
 
+import Iconify from '@purge-icons/generated';
+import { computed, defineComponent, nextTick, onMounted, ref, unref, watch } from 'vue';
 import { isString } from '@zdzz/shared';
-
 import SvgIcon from './SvgIcon.vue';
 
 const SVG_END_WITH_FLAG = '.svg';

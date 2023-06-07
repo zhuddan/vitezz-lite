@@ -1,5 +1,6 @@
-import { Icon } from '@/components/Icon';
 import type { App } from 'vue';
+
+import { Icon } from '@/components/Icon';
 
 const globComponents = [
   Icon,
