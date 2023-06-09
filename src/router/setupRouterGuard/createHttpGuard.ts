@@ -1,16 +1,15 @@
 import type { Router } from 'vue-router';
 
-import { AxiosCanceler } from '@zdzz/shared';
+import { axiosCanceler } from '@/utils/http';
 
 export function createHttpGuard(router: Router) {
   const { removeAllHttpPending } = { removeAllHttpPending: true };
-  let axiosCanceler: Nullable<AxiosCanceler>;
-
-  if (removeAllHttpPending)
-    axiosCanceler = new AxiosCanceler();
+  // let axiosCanceler: Nullable<AxiosCanceler>;
 
   router.beforeEach(async () => {
-    axiosCanceler?.removeAllPending();
+    if (removeAllHttpPending)
+      axiosCanceler?.removeAllPending();
+
     return true;
   });
 }

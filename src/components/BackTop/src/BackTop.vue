@@ -36,7 +36,7 @@ useEventListener(document, 'scroll', handleScrollThrottled);
 <template>
   <Transition name="bounce">
     <button v-if="visible" @click="scrollToTop">
-      <Icon icon="akar-icons:align-to-top" size="18" />
+      <Icon name="test" size="18" />
     </button>
   </Transition>
 </template>

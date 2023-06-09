@@ -51,7 +51,6 @@ getCode();
 
 <template>
   <div style="overflow: hidden">
-    <Icon />
     <div class="login">
       <input id="username" v-model="username" type="text" placeholder="用户名">
       <input id="password" v-model="password" type="text" placeholder="密码">

@@ -1,4 +1,5 @@
 import type { UserModel } from './model/userModel';
+import type { ResponseResult } from '@zdzz/shared';
 
 import { defHttp } from '@/utils/http';
 

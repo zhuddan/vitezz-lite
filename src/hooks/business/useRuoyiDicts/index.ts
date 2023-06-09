@@ -1,4 +1,4 @@
-import type { DictBaseOptions, LoadDict, OriginDictData } from '@zdzz/shared';
+import type { DictBaseOptions, LoadDict, OriginDictData, ResponseData } from '@zdzz/shared';
 
 import { computed, toRefs, unref } from 'vue';
 import { defHttp } from '@/utils/http';

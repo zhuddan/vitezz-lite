@@ -17,3 +17,5 @@ const transform = createRuoyiAxiosTransform({
 });
 
 export const defHttp = createAxios(VITE_APP_API_URL, { transform });
+
+export const axiosCanceler = defHttp.axiosCanceler;

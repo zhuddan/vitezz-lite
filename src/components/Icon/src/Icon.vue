@@ -1,125 +1,59 @@
-<script lang="ts">
-import type { CSSProperties } from 'vue';
+<script lang="ts" setup>
+import type { CSSProperties, PropType } from 'vue';
 
-import Iconify from '@purge-icons/generated';
-import { computed, defineComponent, nextTick, onMounted, ref, unref, watch } from 'vue';
-import { isString } from '@zdzz/shared';
-import SvgIcon from './SvgIcon.vue';
+const props = defineProps({
+  prefix: {
+    type: String,
+    default: 'icon',
+  },
+  name: {
+    type: String as PropType<IconType>,
+    required: true,
+  },
+  color: {
+    type: String,
+    default: '',
+  },
+  // icon size
+  size: {
+    type: [String, Number] as PropType<string | number>,
+  },
+});
 
-const SVG_END_WITH_FLAG = '.svg';
-
-export default defineComponent({
+defineOptions({
   name: 'Icon',
-  components: { SvgIcon },
-  props: {
-    // icon name
-    icon: {
-      type: String,
-      default: '',
-    },
-    // icon color
-    color: {
-      type: String,
-      default: '',
-    },
-    // icon size
-    size: {
-      type: [String, Number] as PropType<string | number>,
-      default: 16,
-    },
-    spin: {
-      type: Boolean,
-      default: false,
-    },
-    prefix: {
-      type: String,
-      default: '',
-    },
-  },
-  setup(props) {
-    const elRef = ref<ElRef>(null);
+});
 
-    const isSvgIcon = computed(() => props.icon?.endsWith(SVG_END_WITH_FLAG));
-    const getSvgIcon = computed(() => props.icon.replace(SVG_END_WITH_FLAG, ''));
-    const getIconRef = computed(() => `${props.prefix ? `${props.prefix}:` : ''}${props.icon}`);
+const symbolId = computed(() => `#${props.prefix}-${props.name}`);
+const getWrapStyle = computed((): CSSProperties => {
+  const { size, color } = props;
+  let fs = size;
 
-    const update = async () => {
-      if (unref(isSvgIcon)) return;
+  if (size !== undefined)
+    fs = typeof size == 'string' ? size : `${size}px`;
+  else
+    fs = '1em';
 
-      const el = unref(elRef);
-      if (!el) return;
-
-      await nextTick();
-      const icon = unref(getIconRef);
-      if (!icon) return;
-
-      const svg = Iconify.renderSVG(icon, {});
-      if (svg) {
-        el.textContent = '';
-        el.appendChild(svg);
-      }
-      else {
-        const span = document.createElement('span');
-        span.className = 'iconify';
-        span.dataset.icon = icon;
-        el.textContent = '';
-        el.appendChild(span);
-      }
-    };
-
-    const getWrapStyle = computed((): CSSProperties => {
-      const { size, color } = props;
-      let fs = size;
-      if (isString(size))
-        fs = parseInt(size, 10);
-
-      return {
-        fontSize: `${fs}px`,
-        color,
-        display: 'inline-flex',
-      };
-    });
-
-    watch(() => props.icon, update, { flush: 'post' });
-
-    onMounted(update);
-
-    return { elRef, getWrapStyle, isSvgIcon, getSvgIcon };
-  },
+  return {
+    fontSize: `${fs}px`,
+    color,
+    display: 'inline-flex',
+  };
 });
 </script>
 
 <template>
-  <SvgIcon v-if="isSvgIcon" :size="size" :name="getSvgIcon" :class="[$attrs.class]" :spin="spin" />
-  <span
-    v-else
-    ref="elRef"
-    class="app-iconify"
-    :class="[$attrs.class, spin && 'app-iconify-spin']"
+  <svg
+    :class="[$attrs.class]"
+    aria-hidden="true" class="icon"
     :style="getWrapStyle"
-  ></span>
+  >
+    <use :xlink:href="symbolId" :fill="color" />
+  </svg>
 </template>
 
 <style lang="scss" scoped>
-.app-iconify {
-  display: inline-block;
-  vertical-align: middle;
-
-  &-spin {
-    svg {
-      animation: loadingCircle 1s infinite linear;
-    }
-  }
-}
-
-span.iconify {
-  display: block;
-  min-width: 1em;
-  min-height: 1em;
-  border-radius: 100%;
-}
-
-.svg-icon {
+.icon {
   width: 1em;
   height: 1em;
   vertical-align: middle;
