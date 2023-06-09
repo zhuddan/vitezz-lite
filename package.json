@@ -6,13 +6,10 @@
   "scripts": {
     "dev": "vite",
     "sit": "vite -m sit",
-    "tree": "esno ./public/run",
     "build": "vue-tsc --noEmit --skipLibCheck && vite build",
     "check:type": "vue-tsc --noEmit --skipLibCheck",
-    "report": "cross-env REPORT=true npm run build",
     "preview": "vite preview",
-    "lint:eslint": "eslint --cache --max-warnings 0  \"{src,types}/**/*.{vue,ts,tsx}\" --fix",
-    "gen:icon": "esno build/generate/icon/index.ts "
+    "lint:eslint": "eslint --cache --max-warnings 0  \"{src,types}/**/*.{vue,ts,tsx}\" --fix"
   },
   "dependencies": {
     "@vueuse/core": "^9.13.0",
