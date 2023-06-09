@@ -54,7 +54,7 @@ getCode();
     <div class="login">
       <input id="username" v-model="username" type="text" placeholder="用户名">
       <input id="password" v-model="password" type="text" placeholder="密码">
-      <div class="code-input clearfix">
+      <div class="code-input-container clearfix">
         <input id="code" v-model="code" type="number" placeholder="验证码" @keydown.enter="handleLogin">
         <img :src="codeUrl" object-fit="fill" @click="getCode">
       </div>
@@ -73,30 +73,34 @@ getCode();
     width: 300px;
   }
 
-  .code-input {
-    height: 60px;
+  input{
+    height: 40px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .code-input-container {
+    display: flex;
 
     input {
       width: 131px;
-      float: left;
-      margin-top: 30px;
       margin-right: 8px;
       margin-bottom: 0;
+      flex: 1;
     }
 
     img {
-      float: left;
+      height: 40px;
+      display: block;
+      width: 106px;
     }
-  }
-
-  input {
-    width: 100%;
-    margin-bottom: 10px;
   }
 
   .login-button {
     width: 100%;
     font-size: 16px;
     margin-top: 20px;
+    height: 40px;
+    box-sizing: border-box;
   }
 </style>
