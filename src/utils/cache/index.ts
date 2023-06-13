@@ -1,4 +1,15 @@
-import { webCache } from './cache';
+import { WebCache } from './WebCache';
+import { name as projectName, version as projectVersion } from '../../../package.json';
+
+interface WebCacheKey {
+  TOKEN: string;
+  APP_COLLAPSE: boolean;
+}
+
+export const webCache = new WebCache<WebCacheKey>({
+  projectName,
+  projectVersion,
+});
 
 export function setToken(value: string) {
   webCache.set('TOKEN', value, { day: 7 });

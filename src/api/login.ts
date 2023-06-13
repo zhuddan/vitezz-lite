@@ -1,15 +1,12 @@
 import type { UserModel } from './model/userModel';
-import type { ResponseResult } from '@zdzz/shared';
 
-import { defHttp } from '@/utils/http';
+import { httpRequest } from '@/utils/request';
 
 // 获取验证码
 export function getCodeImg() {
-  return defHttp.get<ResponseResult<{ img: string; uuid: string }>>(
+  return httpRequest.get<ResponseResult<{ img: string; uuid: string }>>(
     {
       url: '/captchaImage',
-    },
-    {
       withToken: false,
     },
   );
@@ -17,7 +14,7 @@ export function getCodeImg() {
 
 // 登录方法
 export function login(username: string, password: string, code: string, uuid: string) {
-  return defHttp.post<ResponseResult<{ token: string }>>(
+  return httpRequest.post<ResponseResult<{ token: string }>>(
     {
       url: '/login',
       data: {
@@ -26,8 +23,6 @@ export function login(username: string, password: string, code: string, uuid: st
         code,
         uuid,
       },
-    },
-    {
       withToken: false,
     },
   );
@@ -35,7 +30,7 @@ export function login(username: string, password: string, code: string, uuid: st
 
 // 获取用户详细信息
 export function getInfo() {
-  return defHttp.get<ResponseResult<UserModel>>({
+  return httpRequest.get<ResponseResult<UserModel>>({
     url: '/getInfo',
   });
 }

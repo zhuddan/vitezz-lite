@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { useAppConfig } from '@/hooks/config/useAppConfig';
-
-const { VITE_APP_TITLE } = useAppConfig();
+const title = __APP_TITLE__;
 </script>
 
 <template>
   <router-link class="app-logo" to="/">
     <img height="50" width="50" src="@/assets/logo.png" alt="">
-    <span>{{ VITE_APP_TITLE.toUpperCase() }}</span>
+    <span>{{ title.toUpperCase() }}</span>
   </router-link>
 </template>
 
