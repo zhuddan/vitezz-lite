@@ -4,11 +4,11 @@ import { httpRequest } from '.';
 
 import { saveAs } from 'file-saver';
 import { HttpRequestError } from './core';
+import { isObject } from '../is';
+
 interface DownloadOptions extends HttpRequestOption {
   filename?: string;
 }
-
-import { isObject } from '../is';
 
 function transformRequest(params?: object) {
   if (!isObject(params)) return '';

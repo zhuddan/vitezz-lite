@@ -358,7 +358,8 @@
     "import/order": [
       "error",
       {
-        "groups": [["type"], ["object", "builtin"], "index"]
+        "groups": [["type"], ["object", "builtin"], "index"],
+        "newlines-between": "always"
       }
     ]
   }
