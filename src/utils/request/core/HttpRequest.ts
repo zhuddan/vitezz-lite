@@ -269,6 +269,8 @@ export class HttpRequest {
     return this.request({ ...config, method: 'DELETE' });
   }
 
+  request<T = any>(config: isReturnNativeResponseHttpRequestOption): Promise<AxiosResponse<Result<T>>>;
+  request<T = any>(config: HttpRequestOption): Promise<Result<T>>;
   request<T = any>(config: HttpRequestOption): Promise<Result<T> | AxiosResponse<Result<T>>> {
     config = this.formatFormData(config);
     return this.axiosInstance.request(config)

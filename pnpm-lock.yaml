@@ -7,6 +7,9 @@ dependencies:
   axios:
     specifier: ^1.4.0
     version: 1.4.0
+  file-saver:
+    specifier: ^2.0.5
+    version: 2.0.5
   lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
@@ -30,6 +33,9 @@ dependencies:
     version: 4.2.2(vue@3.3.4)
 
 devDependencies:
+  '@types/file-saver':
+    specifier: ^2.0.5
+    version: 2.0.5
   '@types/fs-extra':
     specifier: ^9.0.13
     version: 9.0.13
@@ -489,6 +495,10 @@ packages:
   /@trysound/sax@0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
+    dev: true
+
+  /@types/file-saver@2.0.5:
+    resolution: {integrity: sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==}
     dev: true
 
   /@types/fs-extra@9.0.13:
@@ -2108,6 +2118,10 @@ packages:
     dependencies:
       flat-cache: 3.0.4
     dev: true
+
+  /file-saver@2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
+    dev: false
 
   /fill-range@4.0.0:
     resolution: {integrity: sha512-VcpLTWqWDiTerugjj8e3+esbg+skS3M9e54UuR3iCeIDMXCLTsAH8hTSzDQU/X6/6t3eYkOKoZSef2PlU6U1XQ==}

@@ -1,3 +1,3 @@
 // Generated IconType...
 // cspell:disable
-declare type IconType = 'moon' | 'sun' | 'test' | 'total-sales' | 'transaction' | 'visit-count';
+declare type IconType = 'back-top' | 'moon' | 'sun' | 'test' | 'total-sales' | 'transaction' | 'visit-count';
