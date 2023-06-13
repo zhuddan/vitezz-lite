@@ -1,14 +1,38 @@
 import type { HttpRequestOption } from './core';
 
-import { HttpRequestError } from './core';
-import { saveAs } from 'file-saver';
-import { httpRequest } from './httpRequest';
-import { reject } from 'lodash-es';
+import { httpRequest } from '.';
 
+import { saveAs } from 'file-saver';
+import { HttpRequestError } from './core';
 interface DownloadOptions extends HttpRequestOption {
   filename?: string;
 }
 
+import { isObject } from '../is';
+
+function transformRequest(params?: object) {
+  if (!isObject(params)) return '';
+  let result = '';
+  for (const propName of Object.keys(params)) {
+    const value = params[propName];
+    const part = `${encodeURIComponent(propName)}=`;
+    if (value !== null && typeof value !== 'undefined') {
+      if (typeof value === 'object') {
+        for (const key of Object.keys(value)) {
+          if (value[key] !== null && typeof value[key] !== 'undefined') {
+            const params = `${propName}[${key}]`;
+            const subPart = `${encodeURIComponent(params)}=`;
+            result += `${subPart + encodeURIComponent(value[key])}&`;
+          }
+        }
+      }
+      else {
+        result += `${part + encodeURIComponent(value)}&`;
+      }
+    }
+  }
+  return result;
+}
 async function blobValidate(data: any) {
   try {
     const text = await data.text();
@@ -39,6 +63,11 @@ export function download(config: DownloadOptions) {
   }
   return httpRequest.request({
     ...config,
+    transformRequest: [
+      (params) => {
+        return transformRequest(params);
+      },
+    ],
     responseType: 'blob',
     isReturnNativeResponse: true,
   }).then(async (res) => {
@@ -57,7 +86,8 @@ export function download(config: DownloadOptions) {
       const resText = await data.text();
       const rspObj = JSON.parse(resText);
       const e = new HttpRequestError(rspObj.msg, rspObj.code || 500); // 在同步代码中抛出错误
-      reject(e);
+
+      throw e;
     }
   });
 }
