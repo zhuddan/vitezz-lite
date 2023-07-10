@@ -2,8 +2,8 @@ import type { HttpRequestOption } from './core';
 
 import { httpRequest } from '.';
 
-import { saveAs } from 'file-saver';
 import { HttpRequestError } from './core';
+import { saveAs } from 'file-saver';
 import { isObject } from '../is';
 
 interface DownloadOptions extends HttpRequestOption {
@@ -33,16 +33,6 @@ function transformRequest(params?: object) {
   }
   return result;
 }
-async function blobValidate(data: any) {
-  try {
-    const text = await data.text();
-    JSON.parse(text);
-    return false;
-  }
-  catch (error) {
-    return true;
-  }
-}
 
 export function download(config: DownloadOptions) {
   function getHeaderFileName(headers: Record<string, any>) {
@@ -61,33 +51,40 @@ export function download(config: DownloadOptions) {
     });
     return '';
   }
-  return httpRequest.request({
-    ...config,
-    transformRequest: [
-      (params) => {
-        return transformRequest(params);
-      },
-    ],
-    responseType: 'blob',
-    isReturnNativeResponse: true,
-  }).then(async (res) => {
-    const data = res.data;
-    const isBlob = await blobValidate(data);
-    if (isBlob) {
-      const urlList = config.url?.split('/');
-      const extList = config.url?.split('.');
-      const urlFileName = urlList && urlList?.length >= 0 ? urlList[urlList?.length - 1] : '';
-      const ext = extList && extList?.length >= 0 ? extList[extList?.length - 1] : '';
-      const filename = config.filename || getHeaderFileName(config.headers || {}) || urlFileName || `${Date.now()}.${ext}`;
-      const blob = new Blob([data]);
-      saveAs(blob, decodeURI(decodeURI(filename)));
-    }
-    else {
-      const resText = await data.text();
-      const rspObj = JSON.parse(resText);
-      const e = new HttpRequestError(rspObj.msg, rspObj.code || 500); // 在同步代码中抛出错误
-
-      throw e;
-    }
-  });
+  return httpRequest
+    .request({
+      ...config,
+      transformRequest: [
+        (params) => {
+          return transformRequest(params);
+        },
+      ],
+      responseType: 'blob',
+      isReturnNativeResponse: true,
+    })
+    .then(async (res) => {
+      const data = res.data;
+      const isBlob = res.data instanceof Blob;
+      if (isBlob) {
+        if (res.data?.type && !config.filename) {
+          saveAs(res.data);
+        }
+        else {
+          const urlList = config.url?.split('/');
+          const extList = config.url?.split('.');
+          const urlFileName = urlList && urlList?.length >= 0 ? urlList[urlList?.length - 1] : '';
+          const ext = extList && extList?.length >= 0 ? extList[extList?.length - 1] : '';
+          const filename = config.filename || getHeaderFileName(config.headers || {}) || urlFileName || `${Date.now()}.${ext}`;
+          saveAs(res.data, decodeURI(decodeURI(filename)));
+        }
+      }
+      else {
+        const resText = await data.text();
+        const rspObj = JSON.parse(resText);
+        const e = new HttpRequestError(rspObj.msg, rspObj.code || 500); // 在同步代码中抛出错误
+        throw e;
+      }
+    }).catch((e) => {
+      httpRequest.requestCallbacks?.onError?.(e.message);
+    });
 }

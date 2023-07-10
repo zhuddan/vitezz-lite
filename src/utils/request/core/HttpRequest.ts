@@ -1,5 +1,5 @@
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import type { HttpHandlers, HttpRequestOption, Result, isReturnNativeResponseHttpRequestOption } from './types';
+import type { HttpHandlers, HttpRequestOption, HttpRequestOptionWithoutMethod, isReturnNativeResponseHttpRequestOption } from './types';
 
 import Qs from 'qs';
 import { HttpRequestHeadersContentTypeEnum, HttpRequestMethodsEnum } from './types';
@@ -21,7 +21,7 @@ export class HttpRequest {
   /**
    * @description 处理方法
    */
-  private requestCallbacks: HttpHandlers;
+  requestCallbacks: HttpHandlers;
   /**
    * @description 取消重复请求
    */
@@ -123,6 +123,7 @@ export class HttpRequest {
             ? `${this.options.authenticationScheme} ${token}`
             : token;
         }
+        // DEBUG.log(`[HTTP REQUEST] TOKEN ==> ${this.options.authenticationScheme} ${token}`);
       }
       return config;
     };
@@ -246,26 +247,26 @@ export class HttpRequest {
   // 如果 返回 原生响应 则 => Promise<AxiosResponse<Result<T>>>
   // 否则 => Promise<Result<T>>
   get<T = any>(config: isReturnNativeResponseHttpRequestOption): Promise<AxiosResponse<Result<T>>>;
-  get<T = any>(config: HttpRequestOption): Promise<Result<T>>;
-  get<T = any>(config: HttpRequestOption): Promise<Result<T> | AxiosResponse<Result<T>>> {
+  get<T = any>(config: HttpRequestOptionWithoutMethod): Promise<Result<T>>;
+  get<T = any>(config: HttpRequestOptionWithoutMethod): Promise<Result<T> | AxiosResponse<Result<T>>> {
     return this.request({ ...config, method: 'GET' });
   }
 
   post<T = any>(config: isReturnNativeResponseHttpRequestOption): Promise<AxiosResponse<Result<T>>>;
-  post<T = any>(config: HttpRequestOption): Promise<Result<T>>;
-  post<T = any>(config: HttpRequestOption): Promise<Result<T> | AxiosResponse<Result<T>>> {
+  post<T = any>(config: HttpRequestOptionWithoutMethod): Promise<Result<T>>;
+  post<T = any>(config: HttpRequestOptionWithoutMethod): Promise<Result<T> | AxiosResponse<Result<T>>> {
     return this.request({ ...config, method: 'POST' });
   }
 
   put<T = any>(config: isReturnNativeResponseHttpRequestOption): Promise<AxiosResponse<Result<T>>>;
-  put<T = any>(config: HttpRequestOption): Promise<Result<T>>;
-  put<T = any>(config: HttpRequestOption): Promise<Result<T> | AxiosResponse<Result<T>>> {
+  put<T = any>(config: HttpRequestOptionWithoutMethod): Promise<Result<T>>;
+  put<T = any>(config: HttpRequestOptionWithoutMethod): Promise<Result<T> | AxiosResponse<Result<T>>> {
     return this.request({ ...config, method: 'PUT' });
   }
 
   delete<T = any>(config: isReturnNativeResponseHttpRequestOption): Promise<AxiosResponse<Result<T>>>;
-  delete<T = any>(config: HttpRequestOption): Promise<Result<T>>;
-  delete<T = any>(config: HttpRequestOption): Promise<Result<T> | AxiosResponse<Result<T>>> {
+  delete<T = any>(config: HttpRequestOptionWithoutMethod): Promise<Result<T>>;
+  delete<T = any>(config: HttpRequestOptionWithoutMethod): Promise<Result<T> | AxiosResponse<Result<T>>> {
     return this.request({ ...config, method: 'DELETE' });
   }
 
@@ -278,7 +279,6 @@ export class HttpRequest {
         return this.transformResponse(res);
       }).catch((e: Error | AxiosError | HttpRequestError) => {
         // 所有错误的最终处理
-
         // 重复请求不报错
         if (isAxiosError(e) && e.code == 'ERR_CANCELED') {
           console.warn('请求已经被取消');

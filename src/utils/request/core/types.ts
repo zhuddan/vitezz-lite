@@ -29,11 +29,12 @@ export interface HttpRequestOption extends AxiosRequestConfig {
   authenticationScheme?: string;
 }
 
+export type HttpRequestOptionWithoutMethod = Omit<HttpRequestOption, 'method'>;
 /**
  * @description 返回原生响应的 参数 为了请求方法重载做准备
  *              如果 isReturnNativeResponse 默认是 true 请自行修改 transformResponse 和函数重载
  */
-export type isReturnNativeResponseHttpRequestOption = HttpRequestOption & { isReturnNativeResponse: true };
+export type isReturnNativeResponseHttpRequestOption = HttpRequestOptionWithoutMethod & { isReturnNativeResponse: true };
 
 /**
  * @description HttpRequest 的处理方法
@@ -76,10 +77,3 @@ export enum HttpRequestHeadersContentTypeEnum {
   FORM_DATA = 'multipart/form-data;charset=UTF-8',
 }
 
-/**
- * @description 服务器返回的自定义数据类型
- */
-export type Result<T = any> = {
-  code: number;
-  msg: string;
-} & T;
