@@ -1,10 +1,12 @@
 import path from 'path';
 
-import { defineConfig, loadEnv } from 'vite';
-import AutoImport from 'unplugin-auto-import/vite';
-import vue from '@vitejs/plugin-vue';
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { generatedIconType } from './plugins/generatedIconType';
+
+import vue from '@vitejs/plugin-vue';
+import AutoImport from 'unplugin-auto-import/vite';
+import { defineConfig, loadEnv } from 'vite';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   const isBuild = command === 'build';
