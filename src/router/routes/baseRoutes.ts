@@ -26,6 +26,14 @@ export const baseRoutes: RouteRecordRaw[] = [
     component: () => import('@/views/sign/login.vue'),
   },
   {
+    path: '/dict',
+    meta: {
+      title: 'dict',
+      auth: false,
+    },
+    component: () => import('@/views/dict/index.vue'),
+  },
+  {
     path: '/redirect/:path(.*)',
     meta: {
       auth: false,

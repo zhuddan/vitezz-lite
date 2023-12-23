@@ -54,14 +54,14 @@ onMounted(() => {
   // chart.bindEvents();
 });
 
-function handleClick(e) {
-  click?.({
-    ...e,
-    type: 'click',
-    native: {
-      type: 'click',
-    },
-  }, e.offsetX, e.offsetY);
+function handleClick() {
+  // click?.({
+  //   ...e,
+  //   type: 'click',
+  //   native: {
+  //     type: 'click',
+  //   },
+  // }, e.offsetX, e.offsetY);
 }
 </script>
 
