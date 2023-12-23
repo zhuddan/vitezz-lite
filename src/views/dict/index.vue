@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useDicts } from '@/hooks/useDicts';
+
 const value = ref('DEFAULT');
 const b = ref('');
 

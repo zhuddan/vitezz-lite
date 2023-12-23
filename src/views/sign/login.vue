@@ -31,7 +31,7 @@ function handleLogin() {
     .then(() => {
       router.push('/');
     })
-    .catch((e) => {
+    .catch(() => {
       code.value = '';
       getCode();
     })

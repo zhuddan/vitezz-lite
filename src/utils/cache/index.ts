@@ -1,4 +1,5 @@
 import { WebCache } from './WebCache';
+
 import { name as projectName, version as projectVersion } from '../../../package.json';
 
 interface WebCacheKey {

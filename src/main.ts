@@ -3,10 +3,11 @@ import '@/style/index.scss';
 import router, { setupRouter } from '@/router';
 import { setupRouterGuard } from '@/router/setupRouterGuard';
 import { setupStore } from '@/store';
+
 import App from './App.vue';
+import { registerGlobComp } from './components';
 import { registerPlugins } from './plugins';
 import { initStore } from './store/initStore';
-import { registerGlobComp } from './components';
 import 'virtual:svg-icons-register';
 
 function __init__() {

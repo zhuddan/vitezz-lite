@@ -7,7 +7,7 @@
       "rules": {
         "no-unused-vars": "off",
         "no-undef": "off",
-        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
         "simple-import-sort/imports": "off",
         "simple-import-sort/exports": "off",
         "unused-imports/no-unused-imports": "off",
@@ -21,6 +21,8 @@
   "extends": [
     "plugin:import/recommended",
     "plugin:eslint-comments/recommended",
+    "plugin:vue/vue3-essential",
+    "plugin:vue/vue3-strongly-recommended",
     "plugin:vue/vue3-recommended",
     "plugin:import/typescript",
     "plugin:@typescript-eslint/recommended"
@@ -42,7 +44,7 @@
     "import/default": 2,
     "import/export": 2,
     "semi": [2, "always"],
-    "curly": ["error", "multi-or-nest", "consistent"],
+    "curly": ["off", "multi-or-nest", "consistent"],
     "quote-props": ["error", "as-needed"],
     "no-param-reassign": "off",
     "array-bracket-spacing": ["error", "never"],
@@ -153,14 +155,8 @@
       { "multiline": { "delimiter": "semi" } }
     ],
     "@typescript-eslint/type-annotation-spacing": ["error", {}],
-    "@typescript-eslint/consistent-type-imports": [
-      "error",
-      {
-        "prefer": "type-imports",
-        "disallowTypeAnnotations": false,
-        "fixStyle": "separate-type-imports"
-      }
-    ],
+    "@typescript-eslint/consistent-type-imports": ["off"],
+    "import/newline-after-import": "error",
     "@typescript-eslint/no-import-type-side-effects": "error",
     "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
     "@typescript-eslint/prefer-ts-expect-error": "error",
@@ -287,7 +283,7 @@
     ],
     "vue/component-name-in-template-casing": ["error", "PascalCase"],
     "vue/component-options-name-casing": ["error", "PascalCase"],
-    "vue/custom-event-name-casing": ["error", "camelCase"],
+    "vue/custom-event-name-casing": ["error", "kebab-case"],
     "vue/define-macros-order": [
       "error",
       { "order": ["defineProps", "defineEmits"] }
@@ -348,18 +344,29 @@
     "vue/space-unary-ops": ["error", { "words": true, "nonwords": false }],
     "vue/template-curly-spacing": "error",
     "vue/html-self-closing": [
-      "error",
+      "off",
       {
         "html": { "void": "never", "normal": "never", "component": "always" },
         "svg": "always",
         "math": "always"
       }
     ],
+    "simple-import-sort/exports": "error",
     "import/order": [
       "error",
       {
-        "groups": [["type"], ["object", "builtin"], "index"],
-        "newlines-between": "always"
+        "groups": [
+          ["type"],
+          ["object", "builtin"],
+          "internal",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
       }
     ]
   }

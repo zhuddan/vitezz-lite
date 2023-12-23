@@ -1,5 +1,5 @@
-export * from './HttpRequest';
 export * from './helpers';
-export * from './HttpRequestError';
+export * from './HttpRequest';
 export * from './HttpRequestDeduplicator';
+export * from './HttpRequestError';
 export * from './types';

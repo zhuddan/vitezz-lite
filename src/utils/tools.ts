@@ -1,4 +1,5 @@
 import { isLink } from '@/utils/is';
+
 import { kebabCase } from 'lodash-es';
 
 export function resolvePath(...paths: string[]): string {

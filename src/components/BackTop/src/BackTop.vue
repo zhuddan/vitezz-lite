@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useEventListener, useThrottleFn } from '@vueuse/core';
+
 const visibilityHeight = 300;
 const cubic = (value: number): number => {
   return value ** 3;

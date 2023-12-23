@@ -1,10 +1,11 @@
 import type { HttpRequestOption } from './core';
 
+import { HttpRequestError } from './core';
+
 import { httpRequest } from '.';
 
-import { HttpRequestError } from './core';
-import { saveAs } from 'file-saver';
 import { isObject } from '../is';
+import { saveAs } from 'file-saver';
 
 interface DownloadOptions extends HttpRequestOption {
   filename?: string;

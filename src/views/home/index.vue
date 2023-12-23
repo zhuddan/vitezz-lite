@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const canvasRef = ref<HTMLCanvasElement>();
 import Chart from 'chart.js/auto';
+
 let chart: null | Chart<any> = null;
-const click = null;
 onMounted(() => {
   const data2 = {
     labels: Array.from({ length: 7 }).map((_, index) => `${index + 1}月`),
@@ -53,7 +53,7 @@ onMounted(() => {
   // chart.unbindEvents();
   // chart.bindEvents();
 });
-
+chart;
 function handleClick() {
   // click?.({
   //   ...e,

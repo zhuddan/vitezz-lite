@@ -2,8 +2,9 @@ import type { FormatOptions } from '@/utils/format';
 import type { MaybeRefOrGetter } from 'vue';
 
 import { format } from '@/utils/format';
-import { computed, reactive, toRaw, toRefs } from 'vue';
 import { httpRequest } from '@/utils/request';
+
+import { computed, reactive, toRaw, toRefs } from 'vue';
 
 export type DictTypes =
 | 'sys_user_sex'

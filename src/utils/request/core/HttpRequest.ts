@@ -1,13 +1,14 @@
-import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import type { HttpHandlers, HttpRequestOption, HttpRequestOptionWithoutMethod, isReturnNativeResponseHttpRequestOption } from './types';
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-import Qs from 'qs';
-import { HttpRequestHeadersContentTypeEnum, HttpRequestMethodsEnum } from './types';
+import { isHttpRequestError } from './helpers';
 import { HttpRequestDeduplicator } from './HttpRequestDeduplicator';
+import { HttpRequestError } from './HttpRequestError';
+import { HttpRequestHeadersContentTypeEnum, HttpRequestMethodsEnum } from './types';
+
 import axios, { isAxiosError } from 'axios';
 import { merge } from 'lodash-es';
-import { HttpRequestError } from './HttpRequestError';
-import { isHttpRequestError } from './helpers';
+import Qs from 'qs';
 
 export class HttpRequest {
   /**

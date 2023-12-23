@@ -1,9 +1,11 @@
-import Qs from 'qs';
-import { getToken } from '../cache';
-import { HttpRequest, HttpRequestHeadersContentTypeEnum } from './core';
-import { useUserStore } from '@/store/modules/user';
 import { router } from '@/router';
+import { useUserStore } from '@/store/modules/user';
+
+import { HttpRequest, HttpRequestHeadersContentTypeEnum } from './core';
+
+import { getToken } from '../cache';
 import { showErrorMessage } from '../ui';
+import Qs from 'qs';
 
 export const httpRequest = new HttpRequest({
   // AxiosRequestConfig

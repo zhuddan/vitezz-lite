@@ -1,22 +1,23 @@
 <script setup lang="ts">
 import { AppLogo } from '@/components/Application/';
-import { useUserStore } from '@/store/modules/user';
-import { useAppStore } from '@/store/modules/app';
+// import { useAppStore } from '@/store/modules/app';
+// import { useUserStore } from '@/store/modules/user';
+
 defineOptions({
   name: 'LayoutHeader',
 });
-const appStore = useAppStore();
-const userStore = useUserStore();
-const isLogin = computed(() => !!userStore.user);
-const userName = computed(() => userStore.user?.userName);
+// const appStore = useAppStore();
+// const userStore = useUserStore();
+// const isLogin = computed(() => !!userStore.user);
+// const userName = computed(() => userStore.user?.userName);
 
-const router = useRouter();
+// const router = useRouter();
 
-async function handleLogout() {
-  if (!confirm('确定退出登录？')) return;
-  await userStore.logout();
-  router.replace('/redirect/');
-}
+// async function handleLogout() {
+//   if (!confirm('确定退出登录？')) return;
+//   await userStore.logout();
+//   router.replace('/redirect/');
+// }
 </script>
 
 <template>
@@ -105,6 +106,7 @@ async function handleLogout() {
     a{
       padding: 6px 0;
       text-decoration: none;
+
       &+a{
         margin-left: 10px;
       }

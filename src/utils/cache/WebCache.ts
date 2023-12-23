@@ -1,5 +1,5 @@
-import { parseJson, stringifyJson } from '../json';
 import { isNumber, isObject } from '../is';
+import { parseJson, stringifyJson } from '../json';
 
 export interface WebCacheTimeObject {
   day?: number;
