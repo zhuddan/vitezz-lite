@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BackTop } from '@/components/BackTop';
+import BackTop from '@/components/BackTop/BackTop.vue';
 
 defineOptions({
   name: 'LayoutContent',

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { CSSProperties, PropType } from 'vue';
+import { CSSProperties } from 'vue';
 
 const props = defineProps({
   prefix: {
@@ -7,7 +7,7 @@ const props = defineProps({
     default: 'icon',
   },
   name: {
-    type: String as PropType<IconType>,
+    type: String as PropType<SvgIconType>,
     required: true,
   },
   color: {

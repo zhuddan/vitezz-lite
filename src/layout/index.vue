@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import LayoutContent from './components/content/index.vue';
-import LayoutFooter from './components/footer/index.vue';
-import LayoutHeader from './components/header/index.vue';
+import LayoutContent from './components/LayoutContent.vue';
+import LayoutFooter from './components/LayoutFooter.vue';
+import LayoutHeader from './components/LayoutHeader.vue';
 
 defineOptions({
   name: 'Layout',

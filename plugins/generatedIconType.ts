@@ -1,5 +1,5 @@
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 
 import chokidar from 'chokidar';
 
@@ -28,7 +28,7 @@ export function generatedIconType(isBuild: boolean) {
     getIconTypeByPath(iconsDir);
     const str = `// Generated IconType...
 // cspell:disable
-declare type IconType = ${iconTypes.map(e => `'${e}'`).join(' | ')};`;
+declare type SvgIconType = ${iconTypes.map(e => `'${e}'`).join(' | ')};`;
     fs.writeFileSync(path.resolve(__dirname, '../types', 'icon-type.d.ts'), str);
   }
 

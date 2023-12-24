@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AppLogo } from '@/components/Application/';
+import AppLogo from '@/components/AppLogo/AppLogo.vue';
 // import { useAppStore } from '@/store/modules/app';
 // import { useUserStore } from '@/store/modules/user';
 

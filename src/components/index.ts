@@ -1,9 +1,9 @@
 import type { App } from 'vue';
 
-import { Icon } from '@/components/Icon';
+import SvgIcon from '@/components/SvgIcon/SvgIcon.vue';
 
 const globComponents = [
-  Icon,
+  SvgIcon,
 ];
 
 export function registerGlobComp(app: App) {
