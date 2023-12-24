@@ -73,7 +73,7 @@ function handleClick() {
 
 <style scoped>
 canvas{
-  height: 500px;
-  width: 500px;
+  height: 200px;
+  width: 200px;
 }
 </style>
