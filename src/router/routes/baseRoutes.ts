@@ -5,7 +5,6 @@ export const baseRoutes: RouteRecordRaw[] = [
     path: '/',
     meta: {
       title: '首页',
-      auth: false,
     },
     component: () => import('@/views/home/index.vue'),
   },
@@ -13,7 +12,6 @@ export const baseRoutes: RouteRecordRaw[] = [
     path: '/about',
     meta: {
       title: 'about',
-      auth: false,
     },
     component: () => import('@/views/about/index.vue'),
   },
@@ -21,7 +19,7 @@ export const baseRoutes: RouteRecordRaw[] = [
     path: '/login',
     meta: {
       title: '登录',
-      auth: false,
+      layout: false,
     },
     component: () => import('@/views/sign/login.vue'),
   },
@@ -29,14 +27,13 @@ export const baseRoutes: RouteRecordRaw[] = [
     path: '/dict',
     meta: {
       title: 'dict',
-      auth: false,
     },
     component: () => import('@/views/dict/index.vue'),
   },
   {
     path: '/redirect/:path(.*)',
     meta: {
-      auth: false,
+      title: 'redirect',
     },
     component: () => import('@/views/redirect.vue'),
   },

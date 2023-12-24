@@ -21,7 +21,7 @@ const props = defineProps({
 });
 
 defineOptions({
-  name: 'Icon',
+  name: 'SvgIcon',
 });
 
 const symbolId = computed(() => `#${props.prefix}-${props.name}`);
