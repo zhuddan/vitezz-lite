@@ -21,7 +21,17 @@ export default defineConfig(({ command, mode }) => {
           /\.vue$/,
           /\.vue\?vue/, // .vue
         ],
-        imports: ['vue', 'vue-router'],
+        imports: [
+          'vue',
+          'vue-router',
+          {
+            '@/store/modules': [
+              'useAppStore',
+              'usePermissionStore',
+              'useUserStore',
+            ],
+          },
+        ],
         dts: './types/auto-imports.d.ts',
         eslintrc: {
           enabled: false, // Default `false`

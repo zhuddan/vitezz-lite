@@ -6,39 +6,44 @@ import AppLogo from '@/components/AppLogo/AppLogo.vue';
 defineOptions({
   name: 'LayoutHeader',
 });
+const userStore = useUserStore();
+
 // const appStore = useAppStore();
 // const userStore = useUserStore();
 // const isLogin = computed(() => !!userStore.user);
 // const userName = computed(() => userStore.user?.userName);
 
-// const router = useRouter();
+const router = useRouter();
 
-// async function handleLogout() {
-//   if (!confirm('确定退出登录？')) return;
-//   await userStore.logout();
-//   router.replace('/redirect/');
-// }
+async function handleLogout() {
+  if (!confirm('确定退出登录？')) return;
+  await userStore.logout();
+  router.replace('/redirect/');
+}
 </script>
 
 <template>
   <header class="layout-header">
-    <div class="layout-header_inner container">
+    <div class="layout-header_inner container flex items-center">
       <AppLogo />
-
-      <nav>
+      <div class="flex-1"></div>
+      <nav class="">
         <router-link to="/">
           home
         </router-link>
         <router-link to="/about">
           about
         </router-link>
+        <router-link v-if="!userStore.user" to="/login">
+          login
+        </router-link>
       </nav>
-      <!-- <div v-if="isLogin" class="user-info">
-        <span>{{ userName }}</span>
+      <div v-if="userStore.user" class="user-info flex items-center" style="margin-left: 20px;">
+        <span>{{ userStore.user?.userName?.toLocaleUpperCase() }}</span>
         <button class="btn-primary" @click="handleLogout">
           退出登录
         </button>
-      </div> -->
+      </div>
     </div>
   </header>
 </template>
@@ -59,9 +64,6 @@ defineOptions({
 
   .layout-header_inner {
     height: var(--app-header-hight);
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
     border-bottom: 1px solid #ebebeb;
   }
 

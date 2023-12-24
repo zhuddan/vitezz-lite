@@ -1,37 +1,4 @@
-.clearfix {
-  &::after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: ' ';
-    clear: both;
-    height: 0;
-  }
-}
-
-.container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.app-container {
-  margin-top: 20px;
-}
-
-.flex-align-center {
-  display: flex;
-  align-items: center;
-}
-
-button {
-  &:hover {
-    cursor: pointer;
-  }
-}
+/* stylelint-disable at-rule-no-unknown */
 
 .font-500 {
   font-weight: 500;
@@ -192,7 +159,6 @@ button {
   display: grid;
 }
 
-/* stylelint-disable-next-line at-rule-no-unknown */
 @for $i from 1 through 5 {
   .grid-cols-#{$i} {
     grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
@@ -200,6 +166,11 @@ button {
   .grid-rows-#{$i} {
     grid-template-rows: repeat(#{$i}, minmax(0, 1fr));
   }
+}
+
+.container {
+  padding: 20rpx 32rpx;
+  box-sizing: border-box;
 }
 
 .relative {

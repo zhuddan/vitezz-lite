@@ -5,10 +5,11 @@ import { getToken } from '@/utils/cache';
 
 export function createPermissionGuard(router: Router) {
   router.beforeEach(async (to, from, next) => {
+    const userStore = useUserStore();
     if (getToken()) {
-      const userStore = useUserStore();
-      if (! userStore.user)
+      if (!userStore.user) {
         await userStore.getInfo();
+      }
     }
     next();
   });

@@ -6,13 +6,23 @@ import LayoutHeader from './components/LayoutHeader.vue';
 defineOptions({
   name: 'Layout',
 });
+
+const router = useRouter();
+const layout = ref(false);
+
+router.beforeEach(() => {
+  layout.value = false;
+});
+router.afterEach((a) => {
+  layout.value = a.meta.layout === false ? false : true;
+});
 </script>
 
 <template>
   <div class="layout">
-    <LayoutHeader />
+    <LayoutHeader v-if="layout" />
     <LayoutContent />
-    <LayoutFooter />
+    <LayoutFooter v-if="layout" />
   </div>
 </template>
 
