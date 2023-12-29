@@ -19,22 +19,13 @@
     ],
     "skipLibCheck": true,
     "typeRoots": [
-      "types"
     ],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "types/**/*.ts",
-    "types/**/*.d.ts",
-    "types/**/*.tsx",
-    "types/**/*.vue",
-    "build/**/*.ts",
-    "build/**/*.d.ts"
+    "src/**/*", "src/**/*.vue",
+    "types/**/*", "types/**/*.vue"
   ]
 }

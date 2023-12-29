@@ -2,7 +2,7 @@
   "[vue]": {
     "editor.defaultFormatter": "Vue.volar",
     "editor.codeActionsOnSave": {
-      "source.fixAll": true
+      "source.fixAll": "explicit"
     }
   },
   "cSpell.words": [
